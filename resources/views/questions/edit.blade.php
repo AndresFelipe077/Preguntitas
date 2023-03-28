@@ -15,17 +15,22 @@
 
     <h1>Edit Answer</h1>
 
-<form action="{{ route('answers.update', [$question, $answer]) }}" method="POST">
+<form action="{{ route('questions.update', $question) }}" method="POST">
     @csrf
     @method('PUT')
 
     <div class="form-group">
+        <label for="title">Titulo:</label>
+        <textarea class="form-control" id="title" name="body" rows="5" required>{{ $question->title }}</textarea>
+    </div>
+
+    <div class="form-group">
         <label for="body">Body:</label>
-        <textarea class="form-control" id="body" name="body" rows="5" required>{{ $answer->body }}</textarea>
+        <textarea class="form-control" id="body" name="body" rows="5" required>{{ $question->body }}</textarea>
     </div>
 
     <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="correct" name="correct" {{ $answer->correct ? 'checked' : '' }}>
+        <input type="checkbox" class="form-check-input" id="correct" name="correct" {{ $question->correct ? 'checked' : '' }}>
         <label class="form-check-label" for="correct">Mark as correct answer</label>
     </div>
 
