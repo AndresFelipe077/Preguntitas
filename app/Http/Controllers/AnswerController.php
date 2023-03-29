@@ -18,7 +18,7 @@ class AnswerController extends Controller
     public function store(Request $request, Question $question)
     {
         $validatedData = $request->validate([
-            'body' => 'required|min:5'
+            'body' => 'required|max:50'
         ]);
 
         $answer = new Answer();
