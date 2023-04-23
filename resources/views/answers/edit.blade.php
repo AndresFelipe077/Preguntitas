@@ -28,7 +28,7 @@
 
  <h1>Edit Answer</h1>
 
-<form action="{{ route('answers.update', [$question, $answer]) }}" method="POST">
+<form action="{{ route('answers.update', $answer) }}" method="POST">
     @csrf
     @method('PUT')
 
@@ -37,12 +37,14 @@
         <textarea class="form-control" id="body" name="body" rows="5" required>{{ $answer->body }}</textarea>
     </div>
 
-    <div class="form-check">
+    {{-- <div class="form-check">
         <input type="checkbox" class="form-check-input" id="correct" name="correct" {{ $answer->correct ? 'checked' : '' }}>
         <label class="form-check-label" for="correct">Mark as correct answer</label>
-    </div>
+    </div> --}}
 
     <button type="submit" class="btn btn-primary">Update Answer</button>
+    <a href="{{ back()->getTargetUrl() }}" class="btn btn-danger">Regresar</a>
+
 </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"

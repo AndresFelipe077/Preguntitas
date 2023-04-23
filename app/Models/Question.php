@@ -9,11 +9,17 @@ class Question extends Model
 {
     use HasFactory;
 
-    public function user()
+    protected $fillable = [
+        'title',
+        'quiz_id'
+    ];
+
+    public function quizzes()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Quiz::class);
     }
 
+    // Relación uno a muchos con el modelo Answer
     public function answers()
     {
         return $this->hasMany(Answer::class);

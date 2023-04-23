@@ -36,9 +36,9 @@ class AnswerController extends Controller
     //     return view('answers.edit', compact('answer'));
     // }
 
-    public function edit(Question $question, Answer $answer)
+    public function edit(Answer $answer)
     {
-        return view('answers.edit', compact('question', 'answer'));
+        return view('answers.edit', compact('answer'));
     }
 
     // public function update(Request $request, Answer $answer)
@@ -54,7 +54,7 @@ class AnswerController extends Controller
     //         ->with('success', 'Answer updated successfully.');
     // }
 
-    public function update(Request $request, Question $question, Answer $answer)
+    public function update(Request $request, Answer $answer)
     {
         $validatedData = $request->validate([
             'body' => 'required',
@@ -63,11 +63,11 @@ class AnswerController extends Controller
     
         $answer->update($validatedData);
     
-        if ($request->has('correct')) {
-            $question->markAsCorrect($answer);
-        }
+        // if ($request->has('correct')) {
+        //     $question->markAsCorrect($answer);
+        // }
     
-        return redirect()->route('questions.show', $question);
+        return redirect()->route('questions.show', $answer);
     }
 
     public function destroy(Answer $answer)

@@ -1,0 +1,17 @@
+/*Scroll-bar*/
+::-webkit-scrollbar{
+  width:1em;
+  background:grey;
+}
+
+::-webkit-scrollbar-track{
+  background: #334d50;
+  border-radius:3em;
+}
+::-webkit-scrollbar-thumb{
+  /*background-image:url(/Images/Facebook.svg);*/
+  background-size: contain; 
+  background-repeat:no-repeat;
+  background: rgb(211, 208, 208);
+  border-radius:2em;
+}

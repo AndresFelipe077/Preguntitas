@@ -10,7 +10,7 @@
                     <div class="card-body">
 
 
-                        <h1>Edit Answer</h1>
+                        <h1>Edit Question</h1>
 
                         <form action="{{ route('questions.update', $question) }}" method="POST">
                             @csrf
@@ -20,19 +20,9 @@
                                 <label for="title">Titulo:</label>
                                 <textarea class="form-control" id="title" name="body" rows="5" required>{{ $question->title }}</textarea>
                             </div>
-
-                            <div class="form-group">
-                                <label for="body">Body:</label>
-                                <textarea class="form-control" id="body" name="body" rows="5" required>{{ $question->body }}</textarea>
-                            </div>
-
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="correct" name="correct"
-                                    {{ $question->correct ? 'checked' : '' }}>
-                                <label class="form-check-label" for="correct">Mark as correct answer</label>
-                            </div>
-
                             <button type="submit" class="btn btn-primary">Update Answer</button>
+                        <a href="{{ back()->getTargetUrl() }}" class="btn btn-danger">Regresar</a>
+
                         </form>
 
                     </div>

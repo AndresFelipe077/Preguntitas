@@ -10,6 +10,8 @@
 
     <title>{{ config('app.name', 'Preguntitas') }}</title>
 
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -20,7 +22,7 @@
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="bg-dark">
     <div id="app" class="bg-dark">
         <nav class="navbar navbar-expand-md navbar-light text-white shadow-sm">
             <div class="container">

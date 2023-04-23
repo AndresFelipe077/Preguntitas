@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Models\Quiz;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,9 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $questions = Question::all();
-        // return view('questions.index', compact('questions'));
-        return view('home', compact('questions'));
-
+        $quizzes = Quiz::all();
+        return view('quizzes.index', compact('quizzes'));
     }
 }

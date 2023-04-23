@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('QUESTIONS') }}</div>
+                    <div class="card-header">{{ __('QUIZZES') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -15,35 +15,31 @@
                         @endif
 
                         
-                        <h1>{{ __('List questions!') }}</h1>
+                        <h1>{{ __('List quizzes!') }}</h1>
                         
                         @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
                             </div>
                         @endif
-                        <a href="{{ route('questions.create') }}" class="btn btn-primary mb-3">Create Question</a>
+                        <a href="{{ route('quiz.create') }}" class="btn btn-primary mb-3">Create Quiz</a>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Title</th>
-                                    <th>Author</th>
-                                    <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($questions as $question)
+                                @foreach ($quizzes as $quiz)
                                     <tr>
-                                        <td>{{ $question->title }}</td>
-                                        <td>{{ $question->user->name }}</td>
-                                        <td>{{ $question->created_at }}</td>
+                                        <td>{{ $quiz->title }}</td>
                                         <td>
-                                            <a href="{{ route('questions.show', $question) }}"
+                                            <a href="{{ route('quiz.show', $quiz) }}"
                                                 class="btn btn-info">Show</a>
-                                            <a href="{{ route('questions.edit', $question) }}"
+                                            <a href="{{ route('quiz.edit', $quiz) }}"
                                                 class="btn btn-warning">Edit</a>
-                                            <form action="{{ route('questions.destroy', $question) }}" method="POST"
+                                            <form action="{{ route('quiz.destroy', $quiz) }}" method="POST"
                                                 class="d-inline">
                                                 @csrf
                                                 @method('DELETE')

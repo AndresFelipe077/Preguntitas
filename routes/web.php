@@ -3,6 +3,7 @@
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Rutas para Quizzes
+Route::controller(QuizController::class)->group(function (){
+    Route::get('/quizzes', 'index')->name('quiz.index');
+    Route::get('/quizzes/create', 'create')->name('quiz.create');
+    Route::post('/quizzes', 'store')->name('quiz.store');
+    Route::get('/quizzes/{quiz}', 'show')->name('quiz.show');
+    Route::get('/quizzes/{quiz}/edit', 'edit')->name('quiz.edit');
+    Route::put('/quizzes/{quiz}', 'update')->name('quiz.update');
+    Route::delete('/quizzes/{quiz}', 'destroy')->name('quiz.destroy');
+});
+
 // Rutas para preguntas
 Route::controller(QuestionController::class)->group(function (){
     Route::get('/questions', 'index')->name('questions.index');
@@ -35,10 +47,10 @@ Route::controller(QuestionController::class)->group(function (){
 
 // Rutas para respuestas
 Route::controller(AnswerController::class)->group(function (){
-    Route::get('/questions/{question}/answers/create', 'create')->name('answers.create');
-    Route::post('/questions/{question}/answers', 'store')->name('answers.store');
-    Route::get('/questions/{question}/answers/{answer}/edit', 'edit')->name('answers.edit');
-    Route::put('/questions/{question}/answers/{answer}', 'update')->name('answers.update');
+    Route::get('/questions/{answer}/answers/create', 'create')->name('answers.create');
+    Route::post('/questions/{answer}/answers', 'store')->name('answers.store');
+    Route::get('/questions/{answer}/answer/edit', 'edit')->name('answers.edit');
+    Route::put('/questions/{answer}/answer/update', 'update')->name('answers.update');
     Route::delete('/answers/{answer}', 'destroy')->name('answers.destroy');
 });
 

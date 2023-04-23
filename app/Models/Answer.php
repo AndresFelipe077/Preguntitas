@@ -11,11 +11,7 @@ class Answer extends Model
 
     protected $fillable = ['body'];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
+    // Relación muchos a uno con el modelo Question
     public function question()
     {
         return $this->belongsTo(Question::class);

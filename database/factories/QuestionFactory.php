@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Question;
+use App\Models\Quiz;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Question>
@@ -17,11 +18,10 @@ class QuestionFactory extends Factory
      */
     public function definition(): array
     {
-        $user = 1;
+        $quiz_id = Quiz::all()->random();
         return [
             'title' => $this->faker->randomElement(['Botiquin de primeros auxilios', 'Accidentes casuales']),
-            'body'  => $this->faker->randomElement(['Preguntas para niños', 'asdfasdf']),
-            'user_id' => $user,
+            'quiz_id' => $quiz_id,
         ];
     }
 

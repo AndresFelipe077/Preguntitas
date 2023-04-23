@@ -41,4 +41,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Relación uno a muchos con el modelo Quiz
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class);
+    }
+
 }
