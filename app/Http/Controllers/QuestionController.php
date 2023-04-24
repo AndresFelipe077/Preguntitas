@@ -15,21 +15,42 @@ class QuestionController extends Controller
         return view('questions.create', compact('quiz'));
     }
 
-    public function store(Request $request)
+    // public function store(Request $request, Quiz $quiz)
+    // {
+    //     // $quiz = Quiz::findOrFail($quiz_id);
+
+        // $validatedData = $request->validate([
+        //     'title' => 'required|max:30',
+        // ]);
+
+        // $question          = new Question();
+        // $question->title   = $validatedData['title'];
+        // $question->quiz_id = $quiz;
+        // $question->save(); // Guarda el registro en la base de datos
+
+
+    //     return redirect()->route('quiz.show', $quiz)
+    //         ->with('success', 'Answer submitted successfully.');
+    // }
+
+    public function store(Request $request, Quiz $quiz)
     {
+        // Validar los datos del formulario
         $validatedData = $request->validate([
-            'title' => 'required|max:30',
+            'title' => 'required|string|max:255',
         ]);
 
-        $question          = new Question();
-        $question->title   = $validatedData['title'];
-        $question->quiz_id = 1;
-        $question->save(); // Guarda el registro en la base de datos
+        // Crear una nueva pregunta asociada al quiz
+        $question = new Question();
+        $question->title = $validatedData['title'];
+        $question->quiz_id = $quiz->id;
+        dd($quiz->id);
+        $question->save();
 
-
-        return redirect()->route('quiz.show', 1)
-            ->with('success', 'Answer submitted successfully.');
+        // Redirigir al usuario a la página del quiz
+        return redirect()->route('quizzes.show', $quiz);
     }
+
 
     public function show(Question $question)
     {

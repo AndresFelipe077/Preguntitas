@@ -36,9 +36,9 @@ Route::controller(QuizController::class)->group(function (){
 
 // Rutas para preguntas
 Route::controller(QuestionController::class)->group(function (){
-    Route::get('/questions', 'index')->name('questions.index');
-    Route::get('/questions/create', 'create')->name('questions.create');
-    Route::post('/questions', 'store')->name('questions.store');
+    Route::get('/quizzes/questions', 'index')->name('questions.index');
+    Route::get('/quizzes/{quiz}/questions/create', 'create')->name('questions.create');
+    Route::post('/quizzes/{quiz}/questions', 'store')->name('questions.store');
     Route::get('/questions/{question}', 'show')->name('questions.show');
     Route::get('/questions/{question}/edit', 'edit')->name('questions.edit');
     Route::put('/questions/{question}', 'update')->name('questions.update');

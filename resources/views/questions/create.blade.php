@@ -9,7 +9,8 @@
 
                     <div class="card-body">
                         <h1>Create Question</h1>
-                        <form action="{{ route('questions.store') }}" method="POST">
+                        {{-- Debo agregar el id de la relacion para agregar la pregunta ahi --}}
+                        <form action="{{ route('questions.store', ['quiz' => $quiz->id]) }}" method="POST">
                             @csrf
                             {{-- <input type="hidden" name="quiz_id" value="{{ $quiz_id }}"> --}}
                             <div class="form-group">
