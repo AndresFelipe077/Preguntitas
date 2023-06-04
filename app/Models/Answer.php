@@ -11,10 +11,8 @@ class Answer extends Model
 
     protected $guarded = [];
 
-    // Relación muchos a uno con el modelo Question
     public function question()
     {
-        return $this->belongsTo(Question::class, 'quiz_id');
+        return $this->belongsTo(Question::class, 'question_id');
     }
-
 }

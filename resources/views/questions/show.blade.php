@@ -31,10 +31,9 @@
                             @foreach ($answers as $answer)
                                 <div class="card mb-3">
                                     <div class="card-body">
-                                        <p>{{ $answer->body }}</p>
+                                        <p>{{ $answer->content }}</p>
                                         <p>Created At: {{ $answer->created_at }}</p>
-                                        <a href="{{ route('answers.edit', $answer->id) }}" class="btn btn-danger">Editar
-                                            respuesta</a>
+                                        <a href="{{ route('answers.edit', $answer->id) }}" class="btn btn-danger">Editar respuesta</a>
                                         <a href="{{ route('questions.show', $answer->id) }}"
                                             class="btn btn-success">Respuestas</a>
                                     </div>

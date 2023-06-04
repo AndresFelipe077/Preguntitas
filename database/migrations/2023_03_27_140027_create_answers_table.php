@@ -14,13 +14,10 @@ return new class extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->boolean('is_correct');
+            $table->boolean('is_correct')->nullable();
             $table->unsignedBigInteger('question_id');
-            // $table->unsignedBigInteger('user_id');
-            $table->integer('votes')->default(0);
-
+            $table->integer('votes')->default(0)->nullable();
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

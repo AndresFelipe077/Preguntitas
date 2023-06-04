@@ -49,8 +49,8 @@ Route::controller(QuestionController::class)->group(function (){
 Route::controller(AnswerController::class)->group(function (){
     Route::get('/questions/{question}/answers/create', 'create')->name('answers.create');
     Route::post('/questions/{question}/answers', 'store')->name('answers.store');
-    Route::get('/questions/{question}/answer/edit', 'edit')->name('answers.edit');
-    Route::put('/questions/{question}/answer/update', 'update')->name('answers.update');
+    Route::get('/questions/{answer}/answer/edit', 'edit')->name('answers.edit');
+    Route::put('/questions/{answer}/answer/update', 'update')->name('answers.update');
     Route::delete('/answers/{question}', 'destroy')->name('answers.destroy');
 });
 

@@ -17,8 +17,8 @@
         @csrf
 
         <div class="form-group">
-            <label for="body">Answer</label>
-            <textarea class="form-control" name="body" id="body" rows="3"></textarea>
+            <label for="content">Answer</label>
+            <textarea class="form-control" name="content" id="content" rows="3"></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Ok</button>

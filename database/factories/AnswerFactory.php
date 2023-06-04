@@ -17,10 +17,10 @@ class AnswerFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    {   
+    {
         $question_id = Question::all()->random();
         return [
-            'body' => $this->faker->randomElement(['respuesta 1', 'Respuesta 2', 'Respuesta 3', 'Respuesta 4']),
+            'content' => $this->faker->randomElement(['respuesta 1', 'Respuesta 2', 'Respuesta 3', 'Respuesta 4']),
             'question_id' => $question_id,
         ];
     }

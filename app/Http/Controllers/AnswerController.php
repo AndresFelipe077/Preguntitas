@@ -18,14 +18,11 @@ class AnswerController extends Controller
     public function store(Request $request, Question $question)
     {
         $validatedData = $request->validate([
-            'body' => 'required|max:50'
+            'content' => 'required|max:50'
         ]);
 
-        // dd($question->id);
-
         $answer = new Answer();
-        $answer->body = $validatedData['body'];
-        // $answer->user_id = auth()->user()->id;
+        $answer->content = $validatedData['content'];
         $answer->question_id = $question->id;
         $answer->save();
 
@@ -33,44 +30,27 @@ class AnswerController extends Controller
             ->with('success', 'Answer submitted successfully.');
     }
 
-    // public function edit(Answer $answer)
-    // {
-    //     return view('answers.edit', compact('answer'));
-    // }
-
     public function edit(Answer $answer)
     {
         return view('answers.edit', compact('answer'));
     }
 
-    // public function update(Request $request, Answer $answer)
-    // {
-    //     $validatedData = $request->validate([
-    //         'body' => 'required|min:5'
-    //     ]);
-
-    //     $answer->body = $validatedData['body'];
-    //     $answer->save();
-
-    //     return redirect()->route('questions.show', $answer->question_id)
-    //         ->with('success', 'Answer updated successfully.');
-    // }
 
     public function update(Request $request, Answer $answer)
     {
         $validatedData = $request->validate([
-            'body' => 'required',
-            'correct' => 'nullable|boolean'
+            'content' => 'required|max:50'
         ]);
 
-        $answer->update($validatedData);
+        $answer->content = $validatedData['content'];
+        $answer->update();
 
-        // if ($request->has('correct')) {
-        //     $question->markAsCorrect($answer);
-        // }
+        $question = $answer->question;
 
-        return redirect()->route('questions.show', $answer);
+        return redirect()->route('questions.show', $question)
+            ->with('success', 'Answer updated successfully.');
     }
+
 
     public function destroy(Answer $answer)
     {
