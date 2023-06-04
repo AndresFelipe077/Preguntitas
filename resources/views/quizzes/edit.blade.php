@@ -28,13 +28,8 @@
                                 <textarea class="form-control" id="description" name="description" rows="5" required>{{ $quiz->description }}</textarea>
                             </div>
 
-                            {{-- <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="correct" name="correct"
-                                    {{ $quiz->correct ? 'checked' : '' }}>
-                                <label class="form-check-label" for="correct">Mark as correct answer</label>
-                            </div> --}}
 
-                            <button type="submit" class="btn btn-primary">Update Answer</button>
+                            <button type="submit" class="btn btn-primary">Update Quiz</button>
                         </form>
 
                     </div>

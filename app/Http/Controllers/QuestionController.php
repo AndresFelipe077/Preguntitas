@@ -68,19 +68,25 @@ class QuestionController extends Controller
 
     public function edit(Quiz $quiz, Question $question)
     {
+        $quiz = $question->quizzes;
+
         return view('questions.edit', compact('quiz', 'question'));
     }
 
     public function update(Request $request, Quiz $quiz, Question $question)
     {
         $validatedData = $request->validate([
-            'body' => 'required',
+            'title' => 'required',
         ]);
 
-        $question->update($validatedData);
+        // $question->update($validatedData);
 
+        $question->title = $request->input('title');
+        $question->update();
 
-        return redirect()->route('quiz.show', 1);
+        $quiz = $question->quizzes;
+
+        return redirect()->route('quiz.show', $quiz);
     }
 
     public function destroy(Question $question)
@@ -88,4 +94,5 @@ class QuestionController extends Controller
         $question->delete();
         return redirect()->route('questions.show', $question->quiz)->with('success', 'Answer deleted successfully.');
     }
+
 }

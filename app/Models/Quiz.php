@@ -14,7 +14,7 @@ class Quiz extends Model
     // Relación muchos a uno con el modelo User
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     // Relación muchos a muchos con el modelo Question
@@ -22,5 +22,5 @@ class Quiz extends Model
     {
         return $this->hasMany(Question::class);
     }
-    
+
 }

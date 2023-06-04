@@ -9,12 +9,12 @@ class Answer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['body'];
+    protected $guarded = [];
 
     // Relación muchos a uno con el modelo Question
     public function question()
     {
-        return $this->belongsTo(Question::class);
+        return $this->belongsTo(Question::class, 'quiz_id');
     }
-    
+
 }

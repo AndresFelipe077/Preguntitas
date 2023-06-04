@@ -47,7 +47,7 @@ class QuizController extends Controller
     {
         $quiz->title = $request->input('title');
         $quiz->description = $request->input('description');
-        $quiz->save();
+        $quiz->update();
         return redirect()->route('quiz.index')->with('success', 'Quiz updated successfully.');
     }
 

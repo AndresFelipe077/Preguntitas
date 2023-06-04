@@ -18,10 +18,11 @@
 
                             <div class="form-group">
                                 <label for="title">Titulo:</label>
-                                <textarea class="form-control" id="title" name="body" rows="5" required>{{ $question->title }}</textarea>
+                                <textarea class="form-control" id="title" name="title" rows="5" required>{{ $question->title }}</textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Update Answer</button>
-                        <a href="{{ back()->getTargetUrl() }}" class="btn btn-danger">Regresar</a>
+                            <button type="submit" class="btn btn-primary">Update Question</button>
+                            <a href="{{ route('quiz.show', $quiz) }}" class="btn btn-danger">Regresar</a>
+
 
                         </form>
 
