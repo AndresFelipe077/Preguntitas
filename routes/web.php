@@ -47,11 +47,11 @@ Route::controller(QuestionController::class)->group(function (){
 
 // Rutas para respuestas
 Route::controller(AnswerController::class)->group(function (){
-    Route::get('/questions/{answer}/answers/create', 'create')->name('answers.create');
-    Route::post('/questions/{answer}/answers', 'store')->name('answers.store');
-    Route::get('/questions/{answer}/answer/edit', 'edit')->name('answers.edit');
-    Route::put('/questions/{answer}/answer/update', 'update')->name('answers.update');
-    Route::delete('/answers/{answer}', 'destroy')->name('answers.destroy');
+    Route::get('/questions/{question}/answers/create', 'create')->name('answers.create');
+    Route::post('/questions/{question}/answers', 'store')->name('answers.store');
+    Route::get('/questions/{question}/answer/edit', 'edit')->name('answers.edit');
+    Route::put('/questions/{question}/answer/update', 'update')->name('answers.update');
+    Route::delete('/answers/{question}', 'destroy')->name('answers.destroy');
 });
 
 

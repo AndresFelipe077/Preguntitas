@@ -21,9 +21,11 @@ class AnswerController extends Controller
             'body' => 'required|max:50'
         ]);
 
+        // dd($question->id);
+
         $answer = new Answer();
         $answer->body = $validatedData['body'];
-        $answer->user_id = auth()->user()->id;
+        // $answer->user_id = auth()->user()->id;
         $answer->question_id = $question->id;
         $answer->save();
 
@@ -60,13 +62,13 @@ class AnswerController extends Controller
             'body' => 'required',
             'correct' => 'nullable|boolean'
         ]);
-    
+
         $answer->update($validatedData);
-    
+
         // if ($request->has('correct')) {
         //     $question->markAsCorrect($answer);
         // }
-    
+
         return redirect()->route('questions.show', $answer);
     }
 

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
-    
+
     public function create(Quiz $quiz)
     {
         return view('questions.create', compact('quiz'));
@@ -44,11 +44,11 @@ class QuestionController extends Controller
         $question = new Question();
         $question->title = $validatedData['title'];
         $question->quiz_id = $quiz->id;
-        dd($quiz->id);
+        // dd($quiz->id);
         $question->save();
 
         // Redirigir al usuario a la página del quiz
-        return redirect()->route('quizzes.show', $quiz);
+        return redirect()->route('quiz.show', $quiz);
     }
 
 
