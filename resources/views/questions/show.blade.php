@@ -34,8 +34,7 @@
                                         <p>{{ $answer->content }}</p>
                                         <p>Created At: {{ $answer->created_at }}</p>
                                         <a href="{{ route('answers.edit', $answer->id) }}" class="btn btn-danger">Editar respuesta</a>
-                                        <a href="{{ route('questions.show', $answer->id) }}"
-                                            class="btn btn-success">Respuestas</a>
+                                        
                                     </div>
                                 </div>
                             @endforeach

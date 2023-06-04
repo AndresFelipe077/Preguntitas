@@ -39,10 +39,21 @@ class AnswerController extends Controller
     public function update(Request $request, Answer $answer)
     {
         $validatedData = $request->validate([
-            'content' => 'required|max:50'
+            'content' => 'required|max:50',
+            'is_correct' => 'boolean'
         ]);
 
         $answer->content = $validatedData['content'];
+
+        // Marcar la respuesta como correcta si el campo is_correct está presente y es verdadero
+        if ($request->has('is_correct') && $validatedData['is_correct']) {
+            // Desmarcar cualquier respuesta anteriormente marcada como correcta para la misma pregunta
+            $answer->question->answers()->where('is_correct', true)->update(['is_correct' => false]);
+            $answer->is_correct = true;
+        } else {
+            $answer->is_correct = false;
+        }
+
         $answer->update();
 
         $question = $answer->question;
@@ -50,6 +61,7 @@ class AnswerController extends Controller
         return redirect()->route('questions.show', $question)
             ->with('success', 'Answer updated successfully.');
     }
+
 
 
     public function destroy(Answer $answer)
