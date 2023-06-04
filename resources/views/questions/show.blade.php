@@ -7,6 +7,8 @@
                 <div class="card">
                     <div class="card-header">{{ __('QUESTIONS') }}</div>
 
+
+
                     <div class="card-body">
                         <div class="">
                             <h1>{{ $question->title }}</h1>
@@ -43,7 +45,7 @@
                         @endif
 
                         <a href="{{ route('answers.create', $question->id) }}" class="btn btn-primary">Add Answer</a>
-                        <a href="{{ back()->getTargetUrl() }}" class="btn btn-danger">Regresar</a>
+                        <a href="{{ route('quiz.show', $quiz) }}" class="btn btn-danger">Regresar</a>
                     </div>
                 </div>
             </div>

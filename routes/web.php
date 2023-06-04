@@ -28,10 +28,10 @@ Route::controller(QuizController::class)->group(function (){
     Route::get('/quizzes', 'index')->name('quiz.index');
     Route::get('/quizzes/create', 'create')->name('quiz.create');
     Route::post('/quizzes', 'store')->name('quiz.store');
-    Route::get('/quizzes/{quiz}', 'show')->name('quiz.show');
-    Route::get('/quizzes/{quiz}/edit', 'edit')->name('quiz.edit');
-    Route::put('/quizzes/{quiz}', 'update')->name('quiz.update');
-    Route::delete('/quizzes/{quiz}', 'destroy')->name('quiz.destroy');
+    Route::get('/quiz/{quiz}', 'show')->name('quiz.show');
+    Route::get('/quiz/{quiz}/edit', 'edit')->name('quiz.edit');
+    Route::put('/quiz/{quiz}', 'update')->name('quiz.update');
+    Route::delete('/quiz/{quiz}', 'destroy')->name('quiz.destroy');
 });
 
 // Rutas para preguntas
@@ -39,10 +39,10 @@ Route::controller(QuestionController::class)->group(function (){
     Route::get('/quizzes/questions', 'index')->name('questions.index');
     Route::get('/quizzes/{quiz}/questions/create', 'create')->name('questions.create');
     Route::post('/quizzes/{quiz}/questions', 'store')->name('questions.store');
-    Route::get('/questions/{question}', 'show')->name('questions.show');
-    Route::get('/questions/{question}/edit', 'edit')->name('questions.edit');
-    Route::put('/questions/{question}', 'update')->name('questions.update');
-    Route::delete('/questions/{question}', 'destroy')->name('questions.destroy');
+    Route::get('/question/{question}', 'show')->name('questions.show');
+    Route::get('/question/{question}/edit', 'edit')->name('questions.edit');
+    Route::put('/question/{question}', 'update')->name('questions.update');
+    Route::delete('/question/{question}', 'destroy')->name('questions.destroy');
 });
 
 // Rutas para respuestas

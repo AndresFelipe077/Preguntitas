@@ -18,6 +18,7 @@
                                 <input type="text" name="title" id="title" class="form-control" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Create</button>
+                            <a class="btn btn-danger" href="{{ route('quiz.show', $quiz->id) }}">Regresar</a>
                         </form>
                     </div>
                 </div>

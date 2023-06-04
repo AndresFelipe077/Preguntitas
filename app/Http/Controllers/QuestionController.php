@@ -10,28 +10,15 @@ use Illuminate\Support\Facades\Auth;
 class QuestionController extends Controller
 {
 
+    public function index($quiz)
+    {
+        return view('questions.show')->with('quiz', $quiz);
+    }
+
     public function create(Quiz $quiz)
     {
         return view('questions.create', compact('quiz'));
     }
-
-    // public function store(Request $request, Quiz $quiz)
-    // {
-    //     // $quiz = Quiz::findOrFail($quiz_id);
-
-        // $validatedData = $request->validate([
-        //     'title' => 'required|max:30',
-        // ]);
-
-        // $question          = new Question();
-        // $question->title   = $validatedData['title'];
-        // $question->quiz_id = $quiz;
-        // $question->save(); // Guarda el registro en la base de datos
-
-
-    //     return redirect()->route('quiz.show', $quiz)
-    //         ->with('success', 'Answer submitted successfully.');
-    // }
 
     public function store(Request $request, Quiz $quiz)
     {
@@ -52,21 +39,37 @@ class QuestionController extends Controller
     }
 
 
+    // public function show(Question $question)
+    // {
+
+    //     // Obtén el quiz relacionado con la pregunta
+    //     $quiz = $question->quiz;
+
+    //     // Obtén las respuestas relacionadas con la pregunta
+    //     $answers = $question->answers;
+
+    //     // Retornar la vista con el quiz y las preguntas
+    //     return view('questions.show', compact('question', 'answers', 'quiz'));
+    // }
+
+
     public function show(Question $question)
     {
-        // Obtén las preguntas relacionadas con el quiz
+        // Obtén el quiz relacionado con la pregunta
+        $quiz = $question->quizzes;
+        // return $quiz;
+
+        // Obtén las respuestas relacionadas con la pregunta
         $answers = $question->answers;
 
-        // Retornar la vista con el quiz y las preguntas
-        return view('questions.show', compact('question', 'answers'));
+        // Retornar la vista con el quiz, la pregunta y las respuestas
+        return view('questions.show', compact('quiz', 'question', 'answers'));
     }
-
 
     public function edit(Quiz $quiz, Question $question)
     {
         return view('questions.edit', compact('quiz', 'question'));
     }
-
 
     public function update(Request $request, Quiz $quiz, Question $question)
     {

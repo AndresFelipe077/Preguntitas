@@ -9,14 +9,11 @@ class Question extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'title',
-        'quiz_id'
-    ];
+    protected $guarded = [];
 
     public function quizzes()
     {
-        return $this->belongsTo(Quiz::class);
+        return $this->belongsTo(Quiz::class, 'quiz_id');
     }
 
     // Relación uno a muchos con el modelo Answer
@@ -24,5 +21,5 @@ class Question extends Model
     {
         return $this->hasMany(Answer::class);
     }
-    
+
 }
