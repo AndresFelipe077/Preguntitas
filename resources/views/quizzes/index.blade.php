@@ -14,9 +14,9 @@
                             </div>
                         @endif
 
-                        
+
                         <h1>{{ __('List quizzes!') }}</h1>
-                        
+
                         @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
@@ -46,6 +46,9 @@
                                                 <button type="submit" class="btn btn-danger"
                                                     onclick="return confirm('Are you sure you want to delete this question?')">Delete</button>
                                             </form>
+
+                                            <a href="{{ route('quiz_responder.show', $quiz) }}"
+                                                class="btn btn-success">Responder Quiz</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -32,6 +32,9 @@ Route::controller(QuizController::class)->group(function (){
     Route::get('/quiz/{quiz}/edit', 'edit')->name('quiz.edit');
     Route::put('/quiz/{quiz}', 'update')->name('quiz.update');
     Route::delete('/quiz/{quiz}', 'destroy')->name('quiz.destroy');
+
+    Route::get('/quiz/{quiz}/response', 'showQuiz')->name('quiz_responder.show');
+
 });
 
 // Rutas para preguntas

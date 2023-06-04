@@ -56,4 +56,11 @@ class QuizController extends Controller
         $quiz->delete();
         return redirect()->route('quiz.index')->with('success', 'Quiz deleted successfully.');
     }
+
+
+    public function showQuiz(Quiz $quiz)
+    {
+        return view('responder_quiz.quiz_responder', compact('quiz'));
+    }
+    
 }
