@@ -8,7 +8,7 @@
             <div class="card-body">
                 <p>{{ $quiz->description }}</p>
 
-                <form action="" method="POST">
+                <form action="{{ route('quiz.submit', ['quiz' => $quiz->id]) }}" method="POST">
                     @csrf
 
                     <h4>Preguntas:</h4>
@@ -21,7 +21,8 @@
 
                                 @foreach ($question->answers as $answer)
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]" id="answer{{ $answer->id }}" value="{{ $answer->id }}" required>
+                                        <input class="form-check-input" type="radio" name="answers[{{ $question->id }}]"
+                                            id="answer{{ $answer->id }}" value="{{ $answer->id }}" required>
                                         <label class="form-check-label" for="answer{{ $answer->id }}">
                                             {{ $answer->content }}
                                         </label>

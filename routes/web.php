@@ -35,6 +35,11 @@ Route::controller(QuizController::class)->group(function (){
 
     Route::get('/quiz/{quiz}/response', 'showQuiz')->name('quiz_responder.show');
 
+    // Route::post('/quiz/submit', 'submit')->name('quiz.submit');
+
+    Route::post('/quiz/{quiz}/submit', 'submit')->name('quiz.submit');
+
+
 });
 
 // Rutas para preguntas

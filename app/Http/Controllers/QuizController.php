@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quiz;
+use App\Models\QuizResult;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -62,5 +64,64 @@ class QuizController extends Controller
     {
         return view('responder_quiz.quiz_responder', compact('quiz'));
     }
-    
+
+
+
+    // public function submit(Request $request, Quiz $quiz)
+    // {
+    //     // Validar las respuestas del usuario y calcular la puntuación
+    //     $userAnswers = $request->input('answers');
+    //     $questions = $quiz->questions;
+    //     $score = 0;
+
+    //     foreach ($questions as $question) {
+    //         $userAnswer = $userAnswers[$question->id] ?? null;
+    //         if ($userAnswer == $question->correct_answer) {
+    //             $score++;
+    //         }
+    //     }
+
+    //     // Crear una nueva instancia de QuizResult
+    //     $quizResult = new QuizResult();
+    //     $quizResult->quiz_id = $quiz->id;
+    //     $quizResult->user_id = auth()->user()->id; // Si estás autenticando usuarios
+    //     $quizResult->score = $score;
+
+    //     // Almacenar la puntuación en la sesión
+    //     Session::put('quiz_score', $score);
+
+    //     // Redirigir al usuario a la página de inicio
+    //     return redirect()->route('home');
+    // }
+
+
+    public function submit(Request $request, Quiz $quiz)
+    {
+        // Validar las respuestas del usuario y calcular la puntuación
+        $userAnswers = $request->input('answers');
+        $questions = $quiz->questions;
+        $score = 0;
+
+        foreach ($questions as $question) {
+            $userAnswer = $userAnswers[$question->id] ?? null;
+            $correctAnswer = $question->answers()->where('is_correct', true)->value('id');
+
+            if ($userAnswer == $correctAnswer) {
+                $score++;
+            }
+        }
+
+        // Crear una nueva instancia de QuizResult
+        $quizResult = new QuizResult();
+        $quizResult->quiz_id = $quiz->id;
+        $quizResult->user_id = auth()->user()->id; // Si estás autenticando usuarios
+        $quizResult->score = $score;
+
+        // Guardar el resultado en la base de datos
+        $quizResult->save();
+
+        // Redirigir al usuario a la página de inicio
+        return redirect()->route('home');
+    }
+
 }
