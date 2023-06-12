@@ -10,20 +10,29 @@ use Illuminate\Http\Request;
 class AnswerController extends Controller
 {
 
-    public function create(Question $question)
+    public function create(Question $question, Answer $answer)
     {
-        return view('answers.create', compact('question'));
+        return view('answers.create', compact('question', 'answer'));
     }
 
     public function store(Request $request, Question $question)
     {
         $validatedData = $request->validate([
-            'content' => 'required|max:50'
+            'content' => 'required|max:50',
+            'is_correct' => 'boolean'
         ]);
 
         $answer = new Answer();
         $answer->content = $validatedData['content'];
         $answer->question_id = $question->id;
+
+        if ($validatedData['is_correct']) {
+            // Desmarcar cualquier respuesta anteriormente marcada como correcta para la misma pregunta
+            $question->answers()->where('is_correct', true)->update(['is_correct' => false]);
+
+            $answer->is_correct = true;
+        }
+
         $answer->save();
 
         return redirect()->route('questions.show', $question)
