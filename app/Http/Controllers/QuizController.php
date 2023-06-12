@@ -55,9 +55,19 @@ class QuizController extends Controller
 
     public function destroy(Quiz $quiz)
     {
-        $quiz->delete();
+        $quizResults = $quiz->quizResults; // Obtén los registros relacionados en quiz_results
+
+        foreach ($quizResults as $quizResult) {
+            $quizResult->quiz_id = null; // Establece el campo quiz_id en NULL en lugar de eliminar el registro
+            $quizResult->save();
+        }
+
+        $quiz->delete(); // Elimina el quiz deseado
+
         return redirect()->route('quiz.index')->with('success', 'Quiz deleted successfully.');
     }
+
+
 
 
     public function showQuiz(Quiz $quiz)
@@ -123,5 +133,4 @@ class QuizController extends Controller
         // Redirigir al usuario a la página de inicio
         return redirect()->route('home');
     }
-
 }

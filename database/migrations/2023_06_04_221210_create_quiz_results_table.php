@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('quiz_results', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('quiz_id')->constrained();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('quiz_id')->nullable(); // Permite valores nulos en la columna quiz_id
             $table->integer('score');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('restrict');
         });
     }
 
