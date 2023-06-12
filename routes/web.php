@@ -4,6 +4,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\QuizResultController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +61,10 @@ Route::controller(AnswerController::class)->group(function (){
     Route::get('/questions/{answer}/answer/edit', 'edit')->name('answers.edit');
     Route::put('/questions/{answer}/answer/update', 'update')->name('answers.update');
     Route::delete('/answers/{question}', 'destroy')->name('answers.destroy');
+});
+
+Route::controller(QuizResultController::class)->group(function (){
+    Route::get('/resultado', 'mostrarResultado')->name('resultado');
 });
 
 

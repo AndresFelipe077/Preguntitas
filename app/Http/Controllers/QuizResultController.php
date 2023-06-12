@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\QuizResult;
 use Illuminate\Http\Request;
@@ -85,4 +86,23 @@ class QuizResultController extends Controller
 
         return redirect()->route('quiz.result', $quiz)->with('success', 'Quiz submitted successfully. Your score: ' . $totalScore);
     }
+
+
+    public function mostrarResultado()
+    {
+        $userId = Auth::id(); // Obtiene el ID del usuario actual autenticado
+
+        // Obtén el resultado de quiz correspondiente al usuario actual
+        $quizResult = QuizResult::where('user_id', $userId)->first();
+
+        if ($quizResult) {
+            $score = $quizResult->score;
+            // $questions = $quizResult->quiz->questions;, 'questions'
+
+            return view('responder_quiz.vista_resultado', compact('score'));
+        } else {
+            return redirect()->back()->with('error', 'No se encontró un resultado de quiz.');
+        }
+    }
+
 }

@@ -76,35 +76,6 @@ class QuizController extends Controller
     }
 
 
-
-    // public function submit(Request $request, Quiz $quiz)
-    // {
-    //     // Validar las respuestas del usuario y calcular la puntuación
-    //     $userAnswers = $request->input('answers');
-    //     $questions = $quiz->questions;
-    //     $score = 0;
-
-    //     foreach ($questions as $question) {
-    //         $userAnswer = $userAnswers[$question->id] ?? null;
-    //         if ($userAnswer == $question->correct_answer) {
-    //             $score++;
-    //         }
-    //     }
-
-    //     // Crear una nueva instancia de QuizResult
-    //     $quizResult = new QuizResult();
-    //     $quizResult->quiz_id = $quiz->id;
-    //     $quizResult->user_id = auth()->user()->id; // Si estás autenticando usuarios
-    //     $quizResult->score = $score;
-
-    //     // Almacenar la puntuación en la sesión
-    //     Session::put('quiz_score', $score);
-
-    //     // Redirigir al usuario a la página de inicio
-    //     return redirect()->route('home');
-    // }
-
-
     public function submit(Request $request, Quiz $quiz)
     {
         // Validar las respuestas del usuario y calcular la puntuación
@@ -121,16 +92,30 @@ class QuizController extends Controller
             }
         }
 
-        // Crear una nueva instancia de QuizResult
-        $quizResult = new QuizResult();
-        $quizResult->quiz_id = $quiz->id;
-        $quizResult->user_id = auth()->user()->id; // Si estás autenticando usuarios
-        $quizResult->score = $score;
+        // Obtener el resultado existente del usuario para este cuestionario
+        $quizResult = QuizResult::where('quiz_id', $quiz->id)
+            ->where('user_id', auth()->user()->id)
+            ->first();
 
-        // Guardar el resultado en la base de datos
-        $quizResult->save();
+        if ($quizResult) {
+            // Si el resultado existe, actualizarlo
+            $quizResult->score = $score;
+            $quizResult->save();
+        } else {
+            // Si no existe, crear un nuevo resultado
+            $quizResult = new QuizResult();
+            $quizResult->quiz_id = $quiz->id;
+            $quizResult->user_id = auth()->user()->id;
+            $quizResult->score = $score;
+            $quizResult->save();
+        }
 
         // Redirigir al usuario a la página de inicio
-        return redirect()->route('home');
+        return redirect()->route('resultado');
     }
+
+
+
+
+
 }
