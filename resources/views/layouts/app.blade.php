@@ -17,7 +17,13 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('resources/sass/app.scss') }}">
+
+    <link rel="stylesheet" href="{{ asset('resources/sass/app.scss') }}">
+
+    <script src="resources/js/app.js"></script>
+
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
 </head>
