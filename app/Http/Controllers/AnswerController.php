@@ -26,7 +26,7 @@ class AnswerController extends Controller
         $answer->content = $validatedData['content'];
         $answer->question_id = $question->id;
 
-        if ($validatedData['is_correct']) {
+        if (isset($validatedData['is_correct']) && $validatedData['is_correct']) {
             // Desmarcar cualquier respuesta anteriormente marcada como correcta para la misma pregunta
             $question->answers()->where('is_correct', true)->update(['is_correct' => false]);
 
